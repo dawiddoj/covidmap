@@ -5,12 +5,12 @@
 
 This webpage was made as a final project for a course named "Data communication and visualisation".
 Site structure contains three elements:
-* map of Poland divided into provinces,
-* data writing panel,
+* **map of Poland divided into provinces**
+* **data writing panel**
     * drop-down list of provinces,
     * input for number of transmissions, deaths and recovered patients,
     * three buttons responsible for respectively: saving data; drawing data on the map and graph; clearing data.
-* bar chart divided into provinces,
+* **bar chart divided into provinces**
     * unliike map (where only number of transmissions is displayed), this chart displays all types of data collected from user.
 
 ## Map
