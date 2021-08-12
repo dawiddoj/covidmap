@@ -1,9 +1,9 @@
 # *CovidMap Poland*
 
 ### **Project is using HTML5 + JavaScript only.**
-### **Site is also made fully in Polish.**
+### **Website is also made fully in Polish.**
 
-This webpage was made as a final project for a course named "Data communication and visualisation".
+This webpage was made as a final project for a course named "Data communication and visualization".
 Site structure contains three elements:
 * **map of Poland divided into provinces**
 * **data writing panel**
@@ -11,10 +11,10 @@ Site structure contains three elements:
     * input for number of transmissions, deaths and recovered patients,
     * three buttons responsible for respectively: saving data; drawing data on the map and graph; clearing data.
 * **bar chart divided into provinces**
-    * unliike map (where only number of transmissions is displayed), this chart displays all types of data collected from user.
+    * unlike map (where only number of transmissions is displayed), this chart displays all types of data collected from user.
 
 ## Map
-Map displays data as a circle on the respective provinces. Diameter and color of this circle changes with number of transmissions.
+Map displays data as a circle on the respective provinces. Diameter and colour of this circle changes with number of transmissions.
 
 ## Chart
 Chart displays all types of data taken from user through writing panel.
