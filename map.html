@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="icon" type="image/png" href="images/favicon.png"/>
+        <title>Mapa COVID</title>
+        <link rel="stylesheet" href="style.css">
+        <script type="text/javascript" src="script.js"></script>
+        <script type="text/javascript" src="icons.js"></script>
+    </head>
+    <body onload="onLoad()">
+        <canvas id="area" width="746" height="795"></canvas>
+        <div id="interfejs">
+            <p class="font">Wybierz województwo, a następnie wpisz wartości.</p>
+            <div id="prov"><p class="font">Województwo:</p>
+                <select id="provinces" class="select" onclick="hiddenof()">
+                <option value="0">dolnośląskie</option>
+                <option value="1">kujawsko-pomorskie</option>
+                <option value="2">lubelskie</option>
+                <option value="3">lubuskie</option>
+                <option value="4">łódzkie</option>
+                <option value="5">małopolskie</option>
+                <option value="6">mazowieckie</option>
+                <option value="7">opolskie</option>
+                <option value="8">podkarpackie</option>
+                <option value="9">podlaskie</option>
+                <option value="10">pomorskie</option>
+                <option value="11">śląskie</option>
+                <option value="12">świętokrzyskie</option>
+                <option value="13">warmińsko-mazurskie</option>
+                <option value="14">wielkopolskie</option>
+                <option value="15">zachodnio-pomorskie</option>
+                <option value="" selected hidden>Wybierz...</option>
+                </select>
+            </div>
+            <div id="inp" style="visibility: hidden"><p class="font"><i class="fas fa-virus"></i>Liczba zakażeń: </p><input type="number" id="inputTrans" default="" onchange="activationButton()"/></div>
+            <div id="inp2" style="visibility: hidden"><p class="font"><i class="fas fa-skull-crossbones"></i>Liczba zgonów: </p><input type="number" id="inputDeath" default="" onchange="activationButton()"/></div>
+            <div id="inp3" style="visibility: hidden"><p class="font"><i class="fas fa-virus-slash"></i>Liczba wyzdrowień: </p><input type="number" id="inputRecovered"default="" onchange="activationButton()"/></div>
+            <div id="b1"><input type="button" class="button" id="SaveData" value="Zapisz" onclick="saveData()" disabled/></div>
+            <div id="b2"><input type="button" class="button" id="DrawData" value="Rysuj" onclick="draw()" disabled/></div>
+            <div id="b3"><input type="button" class="button" id="ClearData" value="Wyczyść" onclick="clearData()"/></div>
+        </div>
+        <hr class="style">
+        <canvas id="graph" width="1300" height="800"></canvas>
+        <img id="map" src="images/mapa.png" style="visibility: hidden"/>
+        <img id="graphy" src="images/graph.png" style="visibility: hidden"/>
+    </body>
+</html>
+
