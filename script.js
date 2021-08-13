@@ -1,16 +1,3 @@
-/*
-lista wojewodztw z odpowiadajacymi im miejscami w array coordinates i data:
-0 - dolnoslaskie            4 - lodzkie         8 - podkarpackie        12 - swietokrzyskie
-1 - kujawsko-pomorskie      5 - malopolskie     9 - podlaskie           13 - warminsko - mazurskie
-2 - lubelskie               6 - mazowieckie     10 - pomorskie          14 - wielkopolskie
-3 - lubuskie                7 - opolskie        11 - slaskie            15 - zachodnio - pomorskie
-coordinates[i][0] = X
-coordinates[i][1] = Y
-data[i][0] = Transmissions
-data[i][1] = Deaths
-data[i][2] = Recovered
-*/
-
 var coordinates = [[169, 440], [317, 210], [640, 422], [85, 310], 
                    [390, 390], [450, 600], [515, 300], [270, 497], 
                    [590, 590], [620, 190], [290, 82], [355, 525], 
@@ -25,32 +12,26 @@ var data = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
 var ctx, ctxG;
 var allowedDraw=false;
 
-//funkcje odpowiedzialne za rysowanie tla
-//zbite w jedna bo gdy dwie wpisane sa
-//w onclick="" to nie dzialaja
 function onLoad(){
     drawBackground();
     drawBackgroundG();
 }
 
-//funkcja odpowiedzialna za rysowanie tla dla plotna mapy
+//Map background drawing
 function drawBackground(){
     ctx = document.getElementById("area").getContext("2d");
     var map = document.getElementById("map");
     ctx.drawImage(map, 0, 0);
 }
 
-//funkcja odpowiedzialna za 
-//rysowanie tla dla plotna wykresu
+//Graph background drawing
 function drawBackgroundG(){
     ctxG = document.getElementById("graph").getContext("2d");
     var graph = document.getElementById("graphy");
     ctxG.drawImage(graph, 0, 0);
 }
 
-//funkcja odpowiedzialna za czyszczenie 
-//mapy, wykresu i array "data"
-//bez refreshowania strony
+//Function clearing data from array, map and graph
 function clearData(){
     if (confirm("Na pewno chcesz usunąć dane?")){
         for(var i = 0; i < data.length; i++){
@@ -68,17 +49,15 @@ function clearData(){
     }
 }
 
-//funkcja odpowiedzialna za zapis danych do array "data"
+//Function that saves data to array
 function saveData(){
-        //uaktywnia przycisk "rysuj"
         document.getElementById("DrawData").disabled = false; 
 
     var selectorProvince = document.getElementById("provinces").value;
-    //leading zeros
     var tempDataTrans = parseInt(document.getElementById("inputTrans").value, 10);
     var tempDataDeath = parseInt(document.getElementById("inputDeath").value, 10);
     var tempDataRecovered = parseInt(document.getElementById("inputRecovered").value, 10);
-    //max value
+    //Max value
     if(tempDataTrans>25000 || tempDataDeath>25000 || tempDataRecovered>25000){
         alert("Maksymalne obsługiwane wartości to 25000.");
         document.getElementById("inputTrans").value = "";
@@ -95,46 +74,43 @@ function saveData(){
     }
 }
 
-//funkcje odpowiedzialne za rysowanie danych 
-//na plotnach zbite w jedna
+//Draw button affects map and graph
 function draw(){
     drawData();
     drawGraphData();
 }
 
-//funkcja odpowiedzialna za rysowanie danych na mapie
+//Map draw function
 function drawData(){
     ctx = document.getElementById("area").getContext("2d");
-    //nadpisywanie danych
     ctx.clearRect(0, 0, area.width, area.height);
     drawBackground();
     for(var i=0; i < coordinates.length; i++){
-        //pozyskiwanie danych z array "data"
+        //Obtaining data to temp variables
         tempTrans = data[i][0];
         tempDeath = data[i][1];
         tempRecovered = data[i][2];
-        //pozyskiwanie x,y z array "coordinates"
         tempCordX = coordinates[i][0];
         tempCordY = coordinates[i][1];
-        //kalkulowanie koloru dla okregu
+        //Calculating colour
         var transcolor = Math.round(100*(tempTrans/195));
         if(transcolor>255){
             transcolor = 255;
             }
         transcolor = 255 - transcolor;
         ctx.fillStyle = "rgb(255,"+ transcolor +",0";
-        //kalkulowanie promienia okregow
+        //Calculating radius
         var tempRadius = 30*(tempTrans/300);
         if(tempRadius > 40){
             tempRadius = 40;
         }
-        //beginPath() zapobiega tworzeniu sie linii pomiedzy kolami
+        //beginPath() hotfix that stops drawing lines between circles
         ctx.beginPath();
-            //+100 do Y wyniklo z przesuniecia calej mapy na potrzeby napisu
+            //+100, because map graphic changed
             ctx.arc(tempCordX, tempCordY+100, tempRadius, 0, 2*Math.PI);
         ctx.closePath()
         ctx.fill();
-        //rysowanie ilosci zakazen
+        //Drawing number on top of the circle
         if(tempTrans>0){
             ctx.fillStyle = "black";
             ctx.font = "30px Amiri";
@@ -144,21 +120,19 @@ function drawData(){
     }
 }
 
-//funkcja odpowiedzialna za rysowanie danych na wykresie
+//Graph draw function
 function drawGraphData(){
     ctxG = document.getElementById("graph").getContext("2d");
-    //poprawne nadpisywanie danych
     ctxG.clearRect(0, 0, graph.width, graph.height);
     drawBackgroundG();
     for(var i = 0; i < coordinates.length; i++){
-        //pozyskiwanie danych z array "data"
+        //Obtaining data to temp variables
         var tempTrans = data[i][0];
         var tempDeath = data[i][1];
         var tempRecovered = data[i][2];
-        //kalkulowanie dlugosci slupkow
-        //50px = 100 w skali
+        //Calculating length
+        //50px = 100
         tempTrans = 50*(tempTrans/100);
-        //ograniczamy wystawanie slupka poza skale
         if(tempTrans > 1000){
             tempTrans = 1015;
         }
@@ -171,11 +145,11 @@ function drawGraphData(){
             tempRecovered = 1015;
         }
         var tempCordX = 216;
-        //kazde wojewodztwo na wykresie jest w rownej odleglosci od siebie
-        //dodajac odpowiednia ilosc px kalkulujemy potrzebne Y
+        //Calculating coordinates
         var tempCordTransY = 51+(i*43)-10;
         var tempCordDeathY = 51+(i*43);
         var tempCordRecoveredY = 51+(i*43)+10;
+        //Drawing bars
         ctxG.beginPath();
             ctxG.fillStyle = "#FF1919";
             ctxG.fillRect(tempCordX, tempCordTransY, tempTrans, 7);
@@ -191,16 +165,14 @@ function drawGraphData(){
     }
 }
 
-//funkcja odpowiedzialna za aktywacje 
-//przyciskow po wpisaniu danych
+//Buttons activation
 function activationButton(){
     if(document.getElementById("inputTrans").value != "" && document.getElementById("inputDeath").value != "" && document.getElementById("inputRecovered").value != "" ){
         document.getElementById("SaveData").disabled = false; 
     }
 }
 
-//funkcja odpowiedzialna za ujawnianie pol tekstowych
-//po wybraniu wojewodztwa
+//Input windows activation
 function hiddenof(){
     document.getElementById("inp").style.visibility="visible";
     document.getElementById("inp2").style.visibility="visible";

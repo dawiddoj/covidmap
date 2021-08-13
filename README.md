@@ -11,14 +11,14 @@ Site structure contains three elements:
     * drop-down list of provinces,
     * input for number of transmissions, deaths and recovered patients,
     * three buttons responsible for respectively: saving data; drawing data on the map and graph; clearing data.
-* **bar chart divided into provinces**
-    * unlike map (where only number of transmissions is displayed), this chart displays all types of data collected from user.
+* **bar graph divided into provinces**
+    * unlike map (where only number of transmissions is displayed), this graph displays all types of data collected from user.
 
 ## Map
 Map displays data as a circle on the respective provinces. Diameter and colour of this circle changes with number of transmissions.
 
-## Chart
-Chart displays all types of data taken from user through writing panel.
+## Graph
+Graph displays all types of data taken from user through writing panel.
 
 ## Known bugs/problems:
 * drop-down menu is supposed to give access to input areas only if province is picked,
