@@ -19,11 +19,3 @@ Map displays data as a circle on the respective provinces. Diameter and colour o
 
 ## Graph
 Graph displays all types of data taken from user through writing panel.
-
-## Known bugs/problems:
-* drop-down menu is supposed to give access to input areas only if province is picked,
-    * now it gives access instantly after clicking on drop-down menu,
-* maximum value is 25k,
-* website is not usable on phones, no scaling/wrapping,
-* pie chart feature is ready but merging it creates problems,
-* other web browsers than Firefox (?).
