@@ -4,7 +4,7 @@
 ### **Website is made fully in Polish.**
 ### **Access to this website is possible by clicking [THIS](https://dawiddoj.github.io/covidmap/).** 
 
-This webpage was made as a final project for a course named "Data communication and visualization".
+This webpage was made as a final group project for a course named "Data communication and visualization".
 Site structure contains three elements:
 * **map of Poland divided into provinces**
 * **data writing panel**
